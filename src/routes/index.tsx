@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { Play } from "lucide-react";
 import { toast } from "sonner";
 import { Page, Card, BalanceStrip } from "@/components/ads/Shell";
-import { GlassCube } from "@/components/ads/GlassCube";
 import { Coin } from "@/components/ads/Coin";
 import { useApp, haptic, errMsg } from "@/lib/app-context";
 import { claimAd } from "@/lib/ads.functions";
@@ -67,8 +66,7 @@ function Earn() {
 
       <Card className="relative overflow-hidden text-center">
         <div className="label-caps">{t("watch_title")}</div>
-        <div className="relative -mx-5 my-4 h-64 overflow-hidden">
-          <GlassCube lines={["CLAU"]} />
+        <div className="relative my-4 h-24">
           {last && (
             <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/60 animate-in zoom-in-50 duration-300">
               <Coin c={last.currency} size={44} />

@@ -16,7 +16,7 @@ export function Logo() {
 
 export function Page({ title, sub, children }: { title: string; sub?: string; children: ReactNode }) {
   return (
-    <main className="relative z-10 mx-auto max-w-md px-4 pb-32" style={{ paddingTop: "calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px) + 1.5rem)" }}>
+    <main className="pointer-events-none relative z-10 mx-auto max-w-md px-4 pb-32 [&>*]:pointer-events-auto" style={{ paddingTop: "calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px) + 1.5rem)" }}>
       <div className="mb-6">
         <h1 className="animate-fade-up delay-1 text-4xl leading-[1.1] tracking-tight lowercase">{title}</h1>
         {sub && <p className="animate-fade-up delay-2 mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">{sub}</p>}

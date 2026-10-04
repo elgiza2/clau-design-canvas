@@ -6,6 +6,7 @@ function secretFor(token: string) {
 }
 
 const DEFAULT_ADMINS = "6657246146";
+const START_PHOTO = "AgACAgQAAyEGAATespWMAAMGasG9rEm9tDiEYAqnHKxUxMOfT2gAAnISaxuzdghSqXILMcnJO5wBAAMCAAN5AAM9BA";
 const TASK_REWARD = 0.0005;
 
 type BotState = { step: "name" } | { step: "link"; name: string } | { step: "image"; name: string; link: string };
@@ -118,17 +119,17 @@ export const Route = createFileRoute("/api/public/ads-bot")({
             "<b>Every ad gives you a roulette ticket.</b>",
             "<b>Invite friends to get more tickets.</b>",
             "",
-            "<b>Channel: @adsgrq</b>",
+            "<b>Channel: @Clautei</b>",
           ].join("\n");
           await api("sendPhoto", {
             chat_id: chat,
-            photo: `${appUrl}/start.jpg`,
+            photo: START_PHOTO,
             caption,
             parse_mode: "HTML",
             reply_markup: {
               inline_keyboard: [
                 [{ text: "Open CLAU", web_app: { url } }],
-                [{ text: "Join Channel", url: "https://t.me/adsgrq" }],
+                [{ text: "Join Channel", url: "https://t.me/Clautei" }],
               ],
             },
           });

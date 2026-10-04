@@ -8,3 +8,6 @@
 - [x] Bot /1010 admin: add (name -> link -> image) / delete tasks, 0.0005 GRAM default
 - [x] Deploy to Vercel + update webhook (callback_query)
 - [ ] Automatic payouts (blocked: needs payout wallet seed phrase from user)
+- [x] Full-screen glass cube scene as app background, prompt-style hero UI
+- [ ] External daily scheduler for channel post (needs user to add cron)
+- [x] Start message + bot commands live

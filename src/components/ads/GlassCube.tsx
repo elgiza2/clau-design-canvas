@@ -83,13 +83,16 @@ export function GlassCube({ lines = ["CLAU"], className = "" }: { lines?: string
         text.width = W * dpr; text.height = H * dpr;
         const c = text.getContext("2d")!; c.setTransform(dpr, 0, 0, dpr, 0, 0);
         c.fillStyle = "#000"; c.fillRect(0, 0, W, H);
-        let fs = Math.min(H * 0.32, W * 0.3);
+        const mobile = W < 768 || W / H < 1;
+        let fs = Math.min(H * 0.21, W * (mobile ? 0.21 : 0.118));
         c.font = `800 ${fs}px Poppins`;
         const maxW = Math.max(...lines.map((l) => c.measureText(l).width));
-        if (maxW > W * 0.92) fs *= (W * 0.92) / maxW;
+        const lim = W * (mobile ? 0.9 : 0.5);
+        if (maxW > lim) fs *= lim / maxW;
         c.font = `800 ${fs}px Poppins`; c.fillStyle = "#e9e9e9"; c.textAlign = "center"; c.textBaseline = "alphabetic";
         const gap = fs * 1.07, cap = fs * 0.7, mid = (lines.length - 1) / 2;
-        lines.forEach((l, i) => c.fillText(l, W / 2, H / 2 + cap / 2 + (i - mid) * gap));
+        const cx = W * (mobile ? 0.5 : 0.505), cy = H * (mobile ? 0.45 : 0.468);
+        lines.forEach((l, i) => c.fillText(l, cx, cy + cap / 2 + (i - mid) * gap));
         tex.needsUpdate = true;
       };
       const layout = () => {
@@ -100,7 +103,10 @@ export function GlassCube({ lines = ["CLAU"], className = "" }: { lines?: string
         (backMat.uniforms as any).uResolution.value.set(W * dpr, H * dpr); (frontMat.uniforms as any).uResolution.value.set(W * dpr, H * dpr);
         drawText();
         const visH = 2 * Math.tan((15 * Math.PI) / 180) * 10;
-        pivot.scale.setScalar((Math.min(H * 0.62, W * 0.5) / H) * visH);
+        const mobile = W < 768 || W / H < 1, visW = visH * camera.aspect;
+        const sx = mobile ? 0.5 : 0.517, sy = mobile ? 0.45 : 0.488;
+        pivot.position.set((sx - 0.5) * visW, (0.5 - sy) * visH, 0);
+        pivot.scale.setScalar((Math.min(H * 0.44, W * (mobile ? 0.45 : 0.29)) / H) * visH);
       };
       new GLTFLoader().load(MODEL_URL, (gltf) => {
         const parts: any[] = [];

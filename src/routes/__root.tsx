@@ -14,7 +14,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { AppProvider, useApp } from "@/lib/app-context";
 import { TonConnectProvider } from "@/lib/ton-connect";
 import { BottomNav } from "@/components/ads/BottomNav";
-import { BoomerangVideoBg } from "@/components/ads/BoomerangVideoBg";
 import { MONETAG_ZONE } from "@/lib/ads.config";
 
 import appCss from "../styles.css?url";
@@ -100,9 +99,9 @@ function Gate({ children }: { children: ReactNode }) {
   }
   if (!inTelegram || !state) {
     return (
-      <div className="flex min-h-dvh items-center justify-center px-6">
+      <div className="flex min-h-dvh items-end justify-center px-6 pb-16">
         <div className="glass max-w-sm rounded-2xl p-8 text-center">
-          <div className="-mx-6 h-64"><GlassCube lines={["CLAU"]} /></div>
+          <div className="text-5xl font-extrabold tracking-tighter">CLAU</div>
           {loadError ? (
             <>
               <h1 className="mt-4 text-xl font-normal">Something went wrong</h1>
@@ -132,7 +131,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AppProvider>
         <TonConnectProvider>
-          <BoomerangVideoBg />
+          <div className="fixed inset-0 z-0"><GlassCube lines={["Watch", "Earn", "CLAU"]} /></div>
           <Gate>
             <Outlet />
           </Gate>
