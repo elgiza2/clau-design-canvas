@@ -36,7 +36,7 @@ export function BalanceStrip() {
   if (!u) return null;
   return (
     <div className="glass mb-4 grid grid-cols-3 divide-x divide-border rounded-3xl py-3 [&>*]:justify-center">
-      {(["USDT", "GRAM", "CLAU"] as const).map((c) => (
+      {(["USDT", "GRAM", "CALU"] as const).map((c) => (
         <div key={c} className="flex items-center gap-2">
           <Coin c={c} size={22} />
           <span className="text-sm tabular-nums">{fmt(Number(u[c.toLowerCase() as "usdt"]), c)}</span>

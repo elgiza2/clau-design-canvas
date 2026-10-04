@@ -8,7 +8,7 @@ export const BASE = {
   nav_wallet: "Wallet",
   hello: "Hello",
   watch_title: "Watch & earn",
-  watch_sub: "Every ad pays USDT, GRAM or CLAU — plus a roulette ticket.",
+  watch_sub: "Every ad pays USDT, GRAM or CALU — plus a roulette ticket.",
   watch_btn: "Watch ad",
   wait_btn: "Next ad in {n}s",
   loading_ad: "Loading ad…",

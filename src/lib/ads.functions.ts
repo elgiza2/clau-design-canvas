@@ -75,10 +75,10 @@ export const claimAd = createServerFn({ method: "POST" })
     }
     const mult = activeMult(u);
     const r = Math.random();
-    let currency: "USDT" | "GRAM" | "CLAU";
+    let currency: "USDT" | "GRAM" | "CALU";
     let amount: number;
     if (r < 0.6) {
-      currency = "CLAU";
+      currency = "CALU";
       amount = Math.round((20 + Math.random() * 80) * mult);
     } else {
       currency = r < 0.8 ? "USDT" : "GRAM";
@@ -101,16 +101,15 @@ export const spin = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { s, u } = await getUser(data.initData);
     if (u.tickets < 1) throw new Error("no_tickets");
-    const mult = activeMult(u);
-    // weights for winnable segments
-    const weights: Record<number, number> = { 0: 30, 1: 8, 2: 18, 4: 24, 5: 4, 6: 8, 8: 3, 9: 8, 10: 1, 11: 3 };
-    const entries = Object.entries(weights).map(([i, w]) => [Number(i), w * (WHEEL[Number(i)]!.c === "CLAU" && WHEEL[Number(i)]!.a >= 250 ? mult : 1)] as const);
+    // weights for winnable segments (jackpot segments never win)
+    const weights: Record<number, number> = { 0: 25, 1: 22, 2: 10, 4: 25, 5: 22, 7: 22, 8: 10, 9: 22 };
+    const entries = Object.entries(weights).map(([i, w]) => [Number(i), w] as const);
     const total = entries.reduce((a, [, w]) => a + w, 0);
     let pick = Math.random() * total;
     let index = entries[0]![0];
     for (const [i, w] of entries) { if ((pick -= w) <= 0) { index = i; break; } }
     const seg = WHEEL[index]!;
-    const amount = seg.c === "CLAU" ? Math.round(seg.a * mult) : seg.a;
+    const amount = seg.a;
     const col = seg.c.toLowerCase();
     await s.from("clau_users").update({ [col]: Number(u[col]) + amount, tickets: u.tickets - 1 }).eq("telegram_id", u.telegram_id);
     await s.from("clau_spins").insert({ telegram_id: u.telegram_id, currency: seg.c, amount });
@@ -192,7 +191,7 @@ export const completeTask = createServerFn({ method: "POST" })
   });
 
 export const requestWithdraw = createServerFn({ method: "POST" })
-  .inputValidator((d) => Auth.extend({ currency: z.enum(["USDT", "GRAM", "CLAU"]), amount: z.number().positive(), address: z.string().min(10).max(120) }).parse(d))
+  .inputValidator((d) => Auth.extend({ currency: z.enum(["USDT", "GRAM", "CALU"]), amount: z.number().positive(), address: z.string().min(10).max(120) }).parse(d))
   .handler(async ({ data }) => {
     const { s, u } = await getUser(data.initData);
     const col = data.currency.toLowerCase();
@@ -221,7 +220,7 @@ export const getTranslations = createServerFn({ method: "POST" })
           model: "google/gemini-2.5-flash",
           response_format: { type: "json_object" },
           messages: [
-            { role: "system", content: "You translate mobile app UI strings. Keep it short and natural. Keep placeholders like {n} and brand words CLAU, USDT, GRAM untouched. Return ONLY a JSON object with the same keys." },
+            { role: "system", content: "You translate mobile app UI strings. Keep it short and natural. Keep placeholders like {n} and brand words CLAU, CALU, USDT, GRAM untouched. Return ONLY a JSON object with the same keys." },
             { role: "user", content: `Target language code: ${lang}\n${JSON.stringify(BASE)}` },
           ],
         }),
