@@ -1,3 +1,4 @@
+import { GlassCube } from "@/components/ads/GlassCube";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -101,7 +102,7 @@ function Gate({ children }: { children: ReactNode }) {
     return (
       <div className="flex min-h-dvh items-center justify-center px-6">
         <div className="glass max-w-sm rounded-2xl p-8 text-center">
-          <div className="text-5xl font-normal tracking-tighter">CLAU</div>
+          <div className="-mx-6 h-64"><GlassCube lines={["CLAU"]} /></div>
           {loadError ? (
             <>
               <h1 className="mt-4 text-xl font-normal">Something went wrong</h1>
