@@ -9,5 +9,11 @@
 - [x] Deploy to Vercel + update webhook (callback_query)
 - [ ] Automatic payouts (blocked: needs payout wallet seed phrase from user)
 - [x] Full-screen glass cube scene as app background, prompt-style hero UI
-- [ ] External daily scheduler for channel post (needs user to add cron)
+- [x] Daily post: new picture each day, Supabase schedule 03:00 UTC + /post admin command
+- [x] Deploy to Vercel (clau-earn-app) + update bot links
+- [x] Cleaner page design
 - [x] Start message + bot commands live
+- [ ] English only
+- [ ] Remove top header
+- [ ] Clearer task pictures
+- [ ] Notifications every 8 hours

@@ -6,6 +6,16 @@ import { Coin } from "@/components/ads/Coin";
 import { useApp, haptic, errMsg } from "@/lib/app-context";
 import { completeTask } from "@/lib/ads.functions";
 import { fmt } from "@/lib/ads.config";
+import { Smartphone, Users, Play, UserPlus } from "lucide-react";
+
+function TaskIcon({ title, kind }: { title: string; kind: string }) {
+  const Icon = kind === "watch" ? Play : kind === "invite" ? UserPlus : /app|bot/i.test(title) ? Smartphone : Users;
+  return (
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-accent text-accent-foreground">
+      <Icon size={22} strokeWidth={2.2} />
+    </span>
+  );
+}
 
 export const Route = createFileRoute("/tasks")({
   head: () => ({
@@ -57,9 +67,9 @@ function Tasks() {
           return (
             <Card key={task.key} className="!p-4">
               <div className="flex items-center gap-3">
-                {task.image && <img src={task.image} alt="" className="h-12 w-12 shrink-0 rounded-xl object-cover" loading="lazy" />}
+                <TaskIcon title={task.title} kind={task.kind} />
                 <div className="min-w-0 flex-1">
-                  <div className="font-normal">{task.title}</div>
+                  <div className="font-medium leading-snug">{task.title}</div>
                   <div className="mt-1 flex items-center gap-1.5 text-sm text-muted-foreground">
                     <Coin c={task.reward_currency} size={16} />
                     <span className="tabular-nums">{fmt(Number(task.reward_amount), task.reward_currency)} {task.reward_currency}</span>

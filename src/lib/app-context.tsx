@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
-import { bootstrap, getTranslations, refresh } from "./ads.functions";
-import { BASE, RTL, t as tr, type Dict } from "./i18n";
+import { bootstrap, refresh } from "./ads.functions";
+import { BASE, t as tr, type Dict } from "./i18n";
 
 declare global {
   interface Window {
@@ -31,7 +31,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [inTelegram, setInTelegram] = useState(true);
   const [initData, setInitData] = useState("");
   const [state, setState] = useState<AppState | null>(null);
-  const [dict, setDict] = useState<Dict>(BASE);
+  const dict: Dict = BASE;
   const [rtl, setRtl] = useState(false);
   const [botUsername, setBot] = useState("");
   const [loadError, setLoadError] = useState("");
@@ -44,16 +44,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
       if (!wa || !wa.initData) { setInTelegram(false); setReady(true); return; }
       wa.ready(); wa.expand();
       try {
-        wa.setHeaderColor?.("#141827"); wa.setBackgroundColor?.("#141827"); wa.setBottomBarColor?.("#141827");
+        wa.setHeaderColor?.("#000000"); wa.setBackgroundColor?.("#000000"); wa.setBottomBarColor?.("#000000");
         wa.disableVerticalSwipes?.();
       } catch {}
       goFullscreen(wa);
-      const lang = ((wa.initDataUnsafe?.user?.language_code || navigator.language || "en").split("-")[0] || "en").toLowerCase();
-      setRtl(RTL.has(lang));
-      document.documentElement.lang = lang;
-      document.documentElement.dir = RTL.has(lang) ? "rtl" : "ltr";
+      setRtl(false);
+      document.documentElement.lang = "en";
+      document.documentElement.dir = "ltr";
       setInitData(wa.initData);
-      getTranslations({ data: { lang } }).then((d) => setDict(d as Dict)).catch(() => {});
       bootstrap({ data: { initData: wa.initData } })
         .then((r) => { setBot(r.bot); setState(r); })
         .catch((e) => { setLoadError(errMsg(e)); setInTelegram(false); })
