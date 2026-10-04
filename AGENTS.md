@@ -13,4 +13,5 @@
 - All app tables use the `clau_` prefix in a shared database (bot state lives in `clau_translations` rows keyed `bot:<chatId>`) — why: other projects share this backend.
 - Custom task pictures live in the public storage bucket `clau-tasks` at `<taskKey>.jpg` and are derived from the task key, not stored in a column — why: no schema changes possible.
 - TON Connect (`@tonconnect/ui`) is dynamically imported in the browser only; TON comment payloads are built server-side with `@ton/core` — why: the library touches `window` and Buffer is unavailable in the browser bundle.
-- Vercel deploys are manual from a /tmp copy with `NITRO_PRESET=vercel` and `.vercel/project.json` linked to `ads-telegram-app` — why: Lovable does not push to Vercel.
+- Vercel deploys are manual from a /tmp copy: add `nitro: { preset: "vercel" }` to vite.config, unset DEV_SERVER__PROJECT_PATH/LOVABLE_SANDBOX, build, then `vercel deploy --prebuilt --prod` to project `clau-earn-app` — why: Lovable forces the Cloudflare preset in the sandbox and does not push to Vercel.
+- Daily channel posts rotate a 7-image pool served from `public/posts/d<N>.jpg`, triggered by Supabase pg_cron (03:00 UTC) and the bot admin `/post` command — why: public storage buckets are blocked.
