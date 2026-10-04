@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
-import { bootstrap, getTranslations, refresh } from "./ads.functions";
-import { BASE, RTL, t as tr, type Dict } from "./i18n";
+import { bootstrap, refresh } from "./ads.functions";
+import { BASE, t as tr, type Dict } from "./i18n";
 
 declare global {
   interface Window {
@@ -31,7 +31,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [inTelegram, setInTelegram] = useState(true);
   const [initData, setInitData] = useState("");
   const [state, setState] = useState<AppState | null>(null);
-  const [dict, setDict] = useState<Dict>(BASE);
+  const dict: Dict = BASE;
   const [rtl, setRtl] = useState(false);
   const [botUsername, setBot] = useState("");
   const [loadError, setLoadError] = useState("");
