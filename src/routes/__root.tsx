@@ -14,7 +14,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { AppProvider, useApp } from "@/lib/app-context";
 import { TonConnectProvider } from "@/lib/ton-connect";
 import { BottomNav } from "@/components/ads/BottomNav";
-import { BoomerangVideoBg } from "@/components/ads/BoomerangVideoBg";
 import { MONETAG_ZONE } from "@/lib/ads.config";
 
 import appCss from "../styles.css?url";
