@@ -29,8 +29,8 @@ export const Route = createFileRoute("/api/public/clau-daily-post")({
             chat_id: CHANNEL_ID,
             photo: POST_PHOTO,
             parse_mode: "HTML",
-            caption: `<b>${title}</b>\n\n<b>${a}</b>\n<b>${b}</b>\n\n<b>Open the app and start earning now 👇</b>`,
-            reply_markup: { inline_keyboard: [[{ text: "🚀 Open CLAU App", url: "https://t.me/Clautsbot?startapp" }]] },
+            caption: `<b>${title}</b>\n\n<b>${a}</b>\n<b>${b}</b>\n\n<b>Open the app and start earning now</b>`,
+            reply_markup: { inline_keyboard: [[{ text: "OPEN CLAU APP", url: "https://t.me/Clautsbot?startapp" }]] },
           }),
         });
         const body = await r.text();
