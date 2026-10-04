@@ -97,16 +97,16 @@ export function GlassCube({ lines = ["CLAU"], className = "" }: { lines?: string
         renderer.setSize(W, H, false);
         camera.aspect = W / H; camera.updateProjectionMatrix();
         rtBack.setSize(W * dpr, H * dpr); rtFront.setSize(W * dpr, H * dpr);
-        backMat.uniforms.uResolution.value.set(W * dpr, H * dpr); frontMat.uniforms.uResolution.value.set(W * dpr, H * dpr);
+        (backMat.uniforms as any).uResolution.value.set(W * dpr, H * dpr); (frontMat.uniforms as any).uResolution.value.set(W * dpr, H * dpr);
         drawText();
         const visH = 2 * Math.tan((15 * Math.PI) / 180) * 10;
         pivot.scale.setScalar((Math.min(H * 0.62, W * 0.5) / H) * visH);
       };
       new GLTFLoader().load(MODEL_URL, (gltf) => {
-        const parts: THREE.BufferGeometry[] = [];
+        const parts: any[] = [];
         gltf.scene.updateMatrixWorld(true);
         gltf.scene.traverse((o) => {
-          const m = o as THREE.Mesh;
+          const m = o as any;
           if (!m.isMesh) return;
           let g = m.geometry.clone();
           ["uv", "color", "tangent"].forEach((a) => g.deleteAttribute(a));
