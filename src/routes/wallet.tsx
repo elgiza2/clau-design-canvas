@@ -12,9 +12,9 @@ export const Route = createFileRoute("/wallet")({
   head: () => ({
     meta: [
       { title: "CLAU — Wallet" },
-      { name: "description", content: "Your USDT, GRAM and CLAU balances, withdrawals and boosters." },
+      { name: "description", content: "Your USDT, GRAM and CALU balances, withdrawals and boosters." },
       { property: "og:title", content: "CLAU — Wallet" },
-      { property: "og:description", content: "Your USDT, GRAM and CLAU balances, withdrawals and boosters." },
+      { property: "og:description", content: "Your USDT, GRAM and CALU balances, withdrawals and boosters." },
     ],
   }),
   component: Wallet,
@@ -108,7 +108,7 @@ function Wallet() {
       </Card>
 
       <Card className="!p-2">
-        {(["USDT", "GRAM", "CLAU"] as const).map((c) => (
+        {(["USDT", "GRAM", "CALU"] as const).map((c) => (
           <div key={c} className={`flex w-full items-center gap-3 rounded-2xl px-3 py-3.5 ${sel === c ? "bg-glass-strong" : ""}`}>
             <Coin c={c} size={40} />
             <div className="flex-1">
