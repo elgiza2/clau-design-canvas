@@ -75,7 +75,6 @@ function Earn() {
               <div className="text-2xl font-normal tabular-nums">+{fmt(last.amount, last.currency)}</div>
               <div className="text-xs text-muted-foreground">{last.currency}</div>
             </div>
-            </div>
           )}
         </div>
         {last && <p className="mb-4 text-sm font-medium text-success">{t("plus_ticket")}</p>}
