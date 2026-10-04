@@ -10,3 +10,4 @@
 - [ ] Automatic payouts (blocked: needs payout wallet seed phrase from user)
 - [ ] Full-screen glass cube scene as app background, prompt-style hero UI
 - [ ] External daily scheduler for channel post (needs user to add cron)
+- [ ] Start message + bot commands live

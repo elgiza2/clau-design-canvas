@@ -99,7 +99,7 @@ function Gate({ children }: { children: ReactNode }) {
   }
   if (!inTelegram || !state) {
     return (
-      <div className="flex min-h-dvh items-center justify-center px-6">
+      <div className="flex min-h-dvh items-end justify-center px-6 pb-16">
         <div className="glass max-w-sm rounded-2xl p-8 text-center">
           <div className="text-5xl font-extrabold tracking-tighter">CLAU</div>
           {loadError ? (
