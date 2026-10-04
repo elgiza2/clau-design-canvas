@@ -102,7 +102,7 @@ function Gate({ children }: { children: ReactNode }) {
     return (
       <div className="flex min-h-dvh items-center justify-center px-6">
         <div className="glass max-w-sm rounded-2xl p-8 text-center">
-          <div className="-mx-6 h-64"><GlassCube lines={["CLAU"]} /></div>
+          <div className="text-5xl font-extrabold tracking-tighter">CLAU</div>
           {loadError ? (
             <>
               <h1 className="mt-4 text-xl font-normal">Something went wrong</h1>
@@ -132,7 +132,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <AppProvider>
         <TonConnectProvider>
-          <BoomerangVideoBg />
+          <div className="fixed inset-0 z-0"><GlassCube lines={["Watch", "Earn", "CLAU"]} /></div>
           <Gate>
             <Outlet />
           </Gate>
