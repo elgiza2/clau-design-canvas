@@ -3,7 +3,7 @@ export const CHANNEL = "Clautei";
 export const GRAM_WALLET = "UQAp1QxnLJ2z44IooUovvtVShw7hJBEdxCRV3RlbCYC3D8qj";
 export const MIN_WITHDRAW = 0.5;
 export const AD_COOLDOWN_SEC = 2;
-export const APP_URL = "https://ads-telegram-app.vercel.app";
+export const APP_URL = "https://clau-earn-app.vercel.app";
 export const BOT_USERNAME = "Clautsbot";
 
 export type Currency = "USDT" | "GRAM" | "CLAU";

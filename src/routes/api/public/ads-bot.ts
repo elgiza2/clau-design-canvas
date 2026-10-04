@@ -138,6 +138,14 @@ export const Route = createFileRoute("/api/public/ads-bot")({
 
         if (!isAdmin) return Response.json({ ok: true });
 
+        // ---------- Admin: publish today's channel post now ----------
+        if (text === "/post") {
+          const { sendDailyPost } = await import("@/lib/clau-post.server");
+          const r = await sendDailyPost(process.env["TELEGRAM_BOT_TOKEN"]!);
+          await send(chat, r.ok ? "<b>Posted to the channel.</b>" : `<b>Failed:</b> ${r.body.slice(0, 200)}`);
+          return Response.json({ ok: true });
+        }
+
         // ---------- Admin task manager ----------
         if (text === "/1010") {
           await setState(chat, null);
