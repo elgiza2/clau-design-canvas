@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Play } from "lucide-react";
 import { toast } from "sonner";
 import { Page, Card, BalanceStrip } from "@/components/ads/Shell";
+import { GlassCube } from "@/components/ads/GlassCube";
 import { Coin } from "@/components/ads/Coin";
 import { useApp, haptic, errMsg } from "@/lib/app-context";
 import { claimAd } from "@/lib/ads.functions";
@@ -66,15 +67,14 @@ function Earn() {
 
       <Card className="relative overflow-hidden text-center">
         <div className="label-caps">{t("watch_title")}</div>
-        <div className="mx-auto my-6 flex h-40 w-40 items-center justify-center rounded-full liquid-glass" style={{ background: "var(--glass-strong)" }}>
-          {last ? (
-            <div className="flex flex-col items-center gap-2 animate-in zoom-in-50 duration-300">
+        <div className="relative -mx-5 my-4 h-64 overflow-hidden">
+          <GlassCube lines={["CLAU"]} />
+          {last && (
+            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/60 animate-in zoom-in-50 duration-300">
               <Coin c={last.currency} size={44} />
               <div className="text-2xl font-normal tabular-nums">+{fmt(last.amount, last.currency)}</div>
               <div className="text-xs text-muted-foreground">{last.currency}</div>
             </div>
-          ) : (
-            <div className="text-5xl font-normal tracking-tighter">CLAU</div>
           )}
         </div>
         {last && <p className="mb-4 text-sm font-medium text-success">{t("plus_ticket")}</p>}
