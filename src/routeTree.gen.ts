@@ -15,6 +15,7 @@ import { Route as SpinRouteImport } from './routes/spin'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as WalletRouteImport } from './routes/wallet'
 import { Route as ApiPublicAdsBotRouteImport } from './routes/api/public/ads-bot'
+import { Route as ApiPublicClauDailyPostRouteImport } from './routes/api/public/clau-daily-post'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const ApiPublicAdsBotRoute = ApiPublicAdsBotRouteImport.update({
   path: '/api/public/ads-bot',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicClauDailyPostRoute = ApiPublicClauDailyPostRouteImport.update({
+  id: '/api/public/clau-daily-post',
+  path: '/api/public/clau-daily-post',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/api/public/ads-bot': typeof ApiPublicAdsBotRoute
+  '/api/public/clau-daily-post': typeof ApiPublicClauDailyPostRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/api/public/ads-bot': typeof ApiPublicAdsBotRoute
+  '/api/public/clau-daily-post': typeof ApiPublicClauDailyPostRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,13 +79,27 @@ export interface FileRoutesById {
   '/tasks': typeof TasksRoute
   '/wallet': typeof WalletRoute
   '/api/public/ads-bot': typeof ApiPublicAdsBotRoute
+  '/api/public/clau-daily-post': typeof ApiPublicClauDailyPostRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/friends' | '/spin' | '/tasks' | '/wallet' | '/api/public/ads-bot'
+    | '/'
+    | '/friends'
+    | '/spin'
+    | '/tasks'
+    | '/wallet'
+    | '/api/public/ads-bot'
+    | '/api/public/clau-daily-post'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/friends' | '/spin' | '/tasks' | '/wallet' | '/api/public/ads-bot'
+  to:
+    | '/'
+    | '/friends'
+    | '/spin'
+    | '/tasks'
+    | '/wallet'
+    | '/api/public/ads-bot'
+    | '/api/public/clau-daily-post'
   id:
     | '__root__'
     | '/'
@@ -86,6 +108,7 @@ export interface FileRouteTypes {
     | '/tasks'
     | '/wallet'
     | '/api/public/ads-bot'
+    | '/api/public/clau-daily-post'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +118,7 @@ export interface RootRouteChildren {
   TasksRoute: typeof TasksRoute
   WalletRoute: typeof WalletRoute
   ApiPublicAdsBotRoute: typeof ApiPublicAdsBotRoute
+  ApiPublicClauDailyPostRoute: typeof ApiPublicClauDailyPostRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicAdsBotRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/clau-daily-post': {
+      id: '/api/public/clau-daily-post'
+      path: '/api/public/clau-daily-post'
+      fullPath: '/api/public/clau-daily-post'
+      preLoaderRoute: typeof ApiPublicClauDailyPostRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -151,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   TasksRoute: TasksRoute,
   WalletRoute: WalletRoute,
   ApiPublicAdsBotRoute: ApiPublicAdsBotRoute,
+  ApiPublicClauDailyPostRoute: ApiPublicClauDailyPostRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
