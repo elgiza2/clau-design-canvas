@@ -13,3 +13,7 @@
 - [x] Deploy to Vercel (clau-earn-app) + update bot links
 - [x] Cleaner page design
 - [x] Start message + bot commands live
+- [ ] English only
+- [ ] Remove top header
+- [ ] Clearer task pictures
+- [ ] Notifications every 8 hours
