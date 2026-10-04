@@ -17,3 +17,4 @@
 - [x] Remove top header
 - [x] Clearer task pictures
 - [x] Notifications every 8 hours
+- [ ] Rename coin CLAU -> CALU + mascot icon + remove from spin + clean spin/home redesign + deploy

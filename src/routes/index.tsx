@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Play } from "lucide-react";
+import { Play, Ticket, Eye } from "lucide-react";
 import { toast } from "sonner";
 import { Page, Card, BalanceStrip } from "@/components/ads/Shell";
 import { Coin } from "@/components/ads/Coin";
@@ -12,9 +12,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "CLAU — Watch & earn" },
-      { name: "description", content: "Watch ads and earn USDT, GRAM or CLAU plus roulette tickets." },
+      { name: "description", content: "Watch ads and earn USDT, GRAM or CALU plus spin tickets." },
       { property: "og:title", content: "CLAU — Watch & earn" },
-      { property: "og:description", content: "Watch ads and earn USDT, GRAM or CLAU plus roulette tickets." },
+      { property: "og:description", content: "Watch ads and earn USDT, GRAM or CALU plus spin tickets." },
     ],
   }),
   component: Earn,
@@ -64,38 +64,52 @@ function Earn() {
     <Page title={`${t("hello")}, ${u.first_name ?? ""}`} sub={t("watch_sub")}>
       <BalanceStrip />
 
-      <Card className="relative overflow-hidden text-center">
+      {/* main earn card */}
+      <Card className="text-center">
         <div className="label-caps">{t("watch_title")}</div>
-        <div className="relative my-4 h-24">
-          {last && (
-            <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2 bg-background/60 animate-in zoom-in-50 duration-300">
-              <Coin c={last.currency} size={44} />
-              <div className="text-2xl font-normal tabular-nums">+{fmt(last.amount, last.currency)}</div>
-              <div className="text-xs text-muted-foreground">{last.currency}</div>
+
+        <div className="my-5 flex h-20 items-center justify-center">
+          {last ? (
+            <div className="flex items-center gap-3 animate-in zoom-in-50 duration-300">
+              <Coin c={last.currency} size={40} />
+              <div className="text-left">
+                <div className="text-xl font-semibold tabular-nums">+{fmt(last.amount, last.currency)} {last.currency}</div>
+                <div className="flex items-center gap-1 text-xs text-success"><Ticket size={12} /> {t("plus_ticket")}</div>
+              </div>
+            </div>
+          ) : (
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent">
+              <Play size={22} strokeWidth={2.5} />
             </div>
           )}
         </div>
-        {last && <p className="mb-4 text-sm font-medium text-success">{t("plus_ticket")}</p>}
-        <button className="pill-accent w-full justify-start" disabled={busy || wait > 0} onClick={watch}>
-          <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-accent-foreground"><Play size={18} strokeWidth={2.5} /></span>
+
+        <button className="pill-btn w-full !py-4 text-base" disabled={busy || wait > 0} onClick={watch}>
           {busy ? t("loading_ad") : wait > 0 ? t("wait_btn", wait) : t("watch_btn")}
         </button>
-        {u.mult > 1 && <p className="mt-3 text-sm font-normal text-accent">{t("booster_active", u.mult)}</p>}
+        {u.mult > 1 && <p className="mt-3 text-sm text-accent">{t("booster_active", u.mult)}</p>}
       </Card>
 
-      <div className="mt-4 grid grid-cols-2 gap-3">
-        <Card>
-          <div className="label-caps">{t("ads_watched")}</div>
-          <div className="mt-1 text-3xl font-normal tabular-nums">{u.ads_watched.toLocaleString()}</div>
+      {/* stats */}
+      <div className="mt-3 grid grid-cols-2 gap-3">
+        <Card className="flex items-center gap-3 !p-4">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/15 text-accent"><Eye size={18} /></span>
+          <div>
+            <div className="text-lg font-semibold tabular-nums leading-tight">{u.ads_watched.toLocaleString()}</div>
+            <div className="text-[11px] text-muted-foreground">{t("ads_watched")}</div>
+          </div>
         </Card>
-        <Card>
-          <div className="label-caps">{t("tickets")}</div>
-          <div className="mt-1 text-3xl font-normal tabular-nums">{u.tickets}</div>
+        <Card className="flex items-center gap-3 !p-4">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent/15 text-accent"><Ticket size={18} /></span>
+          <div>
+            <div className="text-lg font-semibold tabular-nums leading-tight">{u.tickets}</div>
+            <div className="text-[11px] text-muted-foreground">{t("tickets")}</div>
+          </div>
         </Card>
       </div>
 
-      <Card className="mt-4">
-        <p className="text-[15px] leading-relaxed">{t("tip")}</p>
+      <Card className="mt-3 !p-4">
+        <p className="text-sm leading-relaxed text-muted-foreground">{t("tip")}</p>
       </Card>
     </Page>
   );

@@ -293,7 +293,7 @@ export type Database = {
           booster: string | null
           booster_mult: number
           booster_until: string | null
-          clau: number
+          calu: number
           created_at: string
           first_name: string | null
           gram: number
@@ -314,7 +314,7 @@ export type Database = {
           booster?: string | null
           booster_mult?: number
           booster_until?: string | null
-          clau?: number
+          calu?: number
           created_at?: string
           first_name?: string | null
           gram?: number
@@ -335,7 +335,7 @@ export type Database = {
           booster?: string | null
           booster_mult?: number
           booster_until?: string | null
-          clau?: number
+          calu?: number
           created_at?: string
           first_name?: string | null
           gram?: number
