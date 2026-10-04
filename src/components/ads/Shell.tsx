@@ -9,7 +9,7 @@ export function Logo() {
       <svg viewBox="0 0 256 256" width={20} height={20} className="fill-foreground">
         <path d="M 256 256 L 128 256 C 198.692 256 256 198.692 256 128 C 256 57.308 198.692 0 128 0 C 57.308 0 0 57.308 0 128 C 0 198.692 57.308 256 128 256 L 0 256 L 0 0 L 256 0 Z M 128 104 C 141.255 104 152 114.745 152 128 C 152 141.255 141.255 152 128 152 C 114.745 152 104 141.255 104 128 C 104 114.745 114.745 104 128 104 Z" />
       </svg>
-      <span className="text-base tracking-tight">ads</span>
+      <span className="text-base tracking-tight font-semibold">CLAU</span>
     </div>
   );
 }
@@ -17,9 +17,13 @@ export function Logo() {
 export function Page({ title, sub, children }: { title: string; sub?: string; children: ReactNode }) {
   return (
     <main className="pointer-events-none relative z-10 mx-auto max-w-md px-4 pb-32 [&>*]:pointer-events-auto" style={{ paddingTop: "calc(var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px) + 1.5rem)" }}>
+      <div className="mb-6 flex items-center justify-between">
+        <Logo />
+        <span className="rounded-full border border-border px-3 py-1 text-[11px] text-muted-foreground">Design World</span>
+      </div>
       <div className="mb-6">
-        <h1 className="animate-fade-up delay-1 text-4xl leading-[1.1] tracking-tight lowercase">{title}</h1>
-        {sub && <p className="animate-fade-up delay-2 mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">{sub}</p>}
+        <h1 className="animate-fade-up delay-1 text-[2rem] font-semibold leading-[1.1] tracking-tight">{title}</h1>
+        {sub && <p className="animate-fade-up delay-2 mt-2 max-w-sm text-sm leading-relaxed text-muted-foreground">{sub}</p>}
       </div>
       <div className="animate-fade-up delay-3">{children}</div>
     </main>
@@ -27,7 +31,7 @@ export function Page({ title, sub, children }: { title: string; sub?: string; ch
 }
 
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <section className={`glass rounded-2xl p-5 ${className}`}>{children}</section>;
+  return <section className={`glass rounded-3xl p-5 ${className}`}>{children}</section>;
 }
 
 export function BalanceStrip() {
@@ -35,7 +39,7 @@ export function BalanceStrip() {
   const u = state?.user;
   if (!u) return null;
   return (
-    <div className="glass mb-4 flex items-center justify-between rounded-2xl px-4 py-3">
+    <div className="glass mb-4 grid grid-cols-3 divide-x divide-border rounded-3xl py-3 [&>*]:justify-center">
       {(["USDT", "GRAM", "CLAU"] as const).map((c) => (
         <div key={c} className="flex items-center gap-2">
           <Coin c={c} size={22} />
