@@ -18,3 +18,7 @@
 - [x] Clearer task pictures
 - [x] Notifications every 8 hours
 - [ ] Rename coin CLAU -> CALU + mascot icon + remove from spin + clean spin/home redesign + deploy
+- [x] Rename coin CLAU -> CALU + mascot icon + remove from spin + clean spin/home redesign + deploy
+- [x] Switch bot to @sramaibot (new token) + start/invite fixes + deploy
+- [x] New start photo + better daily posts & reminders
+- [x] New community channel ID -1004311142881 + start photo cache fix + deploy

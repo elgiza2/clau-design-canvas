@@ -1,4 +1,4 @@
-const CHANNEL_ID = -1003736245644;
+const CHANNEL_ID = -1004311142881;
 const APP = "https://clau-earn-app.vercel.app";
 const POSTS = [
   ["Your time is worth something.", "Watch a short ad and get paid instantly in CALU, USDT or GRAM.", "No deposit. No experience needed. Just open the app and start."],
