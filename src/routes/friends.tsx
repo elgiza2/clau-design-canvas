@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { Page, Card } from "@/components/ads/Shell";
 import { useApp, haptic } from "@/lib/app-context";
+import { BOT_USERNAME } from "@/lib/ads.config";
 
 export const Route = createFileRoute("/friends")({
   head: () => ({
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/friends")({
 function Friends() {
   const { state, t, botUsername } = useApp();
   const u = state!.user;
-  const link = `https://t.me/${botUsername}?startapp=ref_${u.telegram_id}`;
+  const link = `https://t.me/${botUsername || BOT_USERNAME}?startapp=ref_${u.telegram_id}`;
 
   function copy() {
     navigator.clipboard?.writeText(link);

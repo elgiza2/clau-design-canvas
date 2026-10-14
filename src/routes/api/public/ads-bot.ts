@@ -6,7 +6,7 @@ function secretFor(token: string) {
 }
 
 const DEFAULT_ADMINS = "6657246146";
-const START_PHOTO = "AgACAgQAAyEGAATespWMAAMGasG9rEm9tDiEYAqnHKxUxMOfT2gAAnISaxuzdghSqXILMcnJO5wBAAMCAAN5AAM9BA";
+const START_PHOTO = "https://clau-earn-app.vercel.app/start.jpg";
 const TASK_REWARD = 0.0005;
 
 type BotState = { step: "name" } | { step: "link"; name: string } | { step: "image"; name: string; link: string };
@@ -128,7 +128,7 @@ export const Route = createFileRoute("/api/public/ads-bot")({
             parse_mode: "HTML",
             reply_markup: {
               inline_keyboard: [
-                [{ text: "Open CLAU", web_app: { url } }],
+                [param ? { text: "Open CLAU", url: `https://t.me/Clautsbot?startapp=${encodeURIComponent(param)}` } : { text: "Open CLAU", web_app: { url } }],
                 [{ text: "Join Channel", url: "https://t.me/Clautei" }],
               ],
             },
