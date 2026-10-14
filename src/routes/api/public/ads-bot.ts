@@ -6,7 +6,7 @@ function secretFor(token: string) {
 }
 
 const DEFAULT_ADMINS = "6657246146";
-const START_PHOTO = "https://clau-earn-app.vercel.app/start.jpg";
+const START_PHOTO = "https://clau-earn-app.vercel.app/start.jpg?v=2";
 const TASK_REWARD = 0.0005;
 
 type BotState = { step: "name" } | { step: "link"; name: string } | { step: "image"; name: string; link: string };
