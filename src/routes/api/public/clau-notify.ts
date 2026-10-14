@@ -2,9 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { createHash, timingSafeEqual } from "crypto";
 
 const MESSAGES = [
-  "<b>Your free roulette ticket is ready.</b>\n<b>Open CLAU and spin now.</b>",
-  "<b>New ads are waiting for you.</b>\n<b>Watch and earn CLAU, USDT and GRAM.</b>",
-  "<b>New tasks are live.</b>\n<b>Complete them and collect your rewards.</b>",
+  "<b>Your free roulette ticket is ready.</b>\n\n<b>Spin now and win USDT or GRAM.</b>\n<b>It only takes a second.</b>",
+  "<b>New ads are waiting for you.</b>\n\n<b>Every ad pays you instantly and gives you one more spin.</b>\n<b>Open CLAU and keep earning.</b>",
+  "<b>New tasks are live.</b>\n\n<b>Complete them in under a minute and collect bonus GRAM.</b>\n<b>Invite a friend for an extra ticket.</b>",
 ];
 
 export const Route = createFileRoute("/api/public/clau-notify")({
