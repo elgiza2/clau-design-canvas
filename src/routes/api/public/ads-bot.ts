@@ -128,7 +128,7 @@ export const Route = createFileRoute("/api/public/ads-bot")({
             parse_mode: "HTML",
             reply_markup: {
               inline_keyboard: [
-                [param ? { text: "Open CLAU", url: `https://t.me/Clautsbot?startapp=${encodeURIComponent(param)}` } : { text: "Open CLAU", web_app: { url } }],
+                [param ? { text: "Open CLAU", url: `https://t.me/sramaibot?startapp=${encodeURIComponent(param)}` } : { text: "Open CLAU", web_app: { url } }],
                 [{ text: "Join Channel", url: "https://t.me/Clautei" }],
               ],
             },

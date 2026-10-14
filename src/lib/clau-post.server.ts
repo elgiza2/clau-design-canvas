@@ -21,7 +21,7 @@ export async function sendDailyPost(token: string, day = Math.floor(Date.now() /
       photo: `${APP}/posts/d${i}.jpg?v=${day}`,
       parse_mode: "HTML",
       caption: `<b>${title}</b>\n\n<b>${a}</b>\n<b>${b}</b>\n\n<b>Open the app and start earning now</b>`,
-      reply_markup: { inline_keyboard: [[{ text: "OPEN CLAU APP", url: "https://t.me/Clautsbot?startapp" }]] },
+      reply_markup: { inline_keyboard: [[{ text: "OPEN CLAU APP", url: "https://t.me/sramaibot?startapp" }]] },
     }),
   });
   return { ok: r.ok, body: await r.text() };

