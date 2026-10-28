@@ -1,10 +1,10 @@
 export const MONETAG_ZONE = "11950813";
-export const CHANNEL = "Clautei";
+export const CHANNEL = "teslaiio";
 export const GRAM_WALLET = "UQAp1QxnLJ2z44IooUovvtVShw7hJBEdxCRV3RlbCYC3D8qj";
 export const MIN_WITHDRAW = 0.5;
 export const AD_COOLDOWN_SEC = 2;
 export const APP_URL = "https://clau-earn-app.vercel.app";
-export const BOT_USERNAME = "sramaibot";
+export const BOT_USERNAME = "Clautsbot";
 
 export type Currency = "USDT" | "GRAM" | "CALU";
 

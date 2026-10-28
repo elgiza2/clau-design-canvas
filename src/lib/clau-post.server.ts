@@ -1,4 +1,4 @@
-const CHANNEL_ID = -1004311142881;
+const CHANNEL_ID = -1003736245644;
 const APP = "https://clau-earn-app.vercel.app";
 const POSTS = [
   ["Your time is worth something.", "Watch a short ad and get paid instantly in CALU, USDT or GRAM.", "No deposit. No experience needed. Just open the app and start."],
@@ -21,7 +21,7 @@ export async function sendDailyPost(token: string, day = Math.floor(Date.now() /
       photo: `${APP}/posts/d${i}.jpg?v=${day}`,
       parse_mode: "HTML",
       caption: `<b>${title}</b>\n\n<b>${a}</b>\n<b>${b}</b>\n\n<b>Open the app and start earning now</b>`,
-      reply_markup: { inline_keyboard: [[{ text: "OPEN CLAU APP", url: "https://t.me/sramaibot?startapp" }]] },
+      reply_markup: { inline_keyboard: [[{ text: "OPEN CLAU APP", url: "https://t.me/Clautsbot?startapp" }]] },
     }),
   });
   return { ok: r.ok, body: await r.text() };
