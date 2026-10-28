@@ -119,7 +119,7 @@ export const Route = createFileRoute("/api/public/ads-bot")({
             "<b>Every ad gives you a roulette ticket.</b>",
             "<b>Invite friends to get more tickets.</b>",
             "",
-            "<b>Channel: @Clautei</b>",
+            "<b>Channel: @teslaiio</b>",
           ].join("\n");
           await api("sendPhoto", {
             chat_id: chat,
@@ -128,8 +128,8 @@ export const Route = createFileRoute("/api/public/ads-bot")({
             parse_mode: "HTML",
             reply_markup: {
               inline_keyboard: [
-                [param ? { text: "Open CLAU", url: `https://t.me/sramaibot?startapp=${encodeURIComponent(param)}` } : { text: "Open CLAU", web_app: { url } }],
-                [{ text: "Join Channel", url: "https://t.me/Clautei" }],
+                [param ? { text: "Open CLAU", url: `https://t.me/Clautsbot?startapp=${encodeURIComponent(param)}` } : { text: "Open CLAU", web_app: { url } }],
+                [{ text: "Join Channel", url: "https://t.me/teslaiio" }],
               ],
             },
           });
